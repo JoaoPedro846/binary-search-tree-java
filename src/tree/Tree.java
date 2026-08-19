@@ -1,6 +1,8 @@
 package tree;
 
-public class Tree<T extends Comparable<T>> {
+import entities.Identifiable;
+
+public class Tree<T extends Comparable<T> & Identifiable> {
     private Node<T> edge;
 
     public Tree(Node<T> edge) {
@@ -53,6 +55,42 @@ public class Tree<T extends Comparable<T>> {
 
             place = next;
         }
+    }
+
+    public Node<T> search(Node<T> search) {
+        Node<T> current = edge;
+        while(current != null){
+            if(current.getValue().equals(search.getValue())){
+                return current;
+            }
+            else{
+                current = currentNode(current, search);
+            }
+        }
+
+        return null;
+    }
+
+    public Node<T> searchById(int id) {
+        return searchById(edge, id);
+    }
+
+    private Node<T> searchById(Node<T> node, int id) {
+        if (node == null) {
+            return null;
+        }
+
+        if (node.getValue().getId() == id) {
+            return node;
+        }
+
+        Node<T> result = searchById(node.getLeft(), id);
+
+        if (result != null) {
+            return result;
+        }
+
+        return searchById(node.getRight(), id);
     }
 
     public void printTree() {

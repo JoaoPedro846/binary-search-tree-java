@@ -1,6 +1,6 @@
 package entities;
 
-public class Client implements Comparable<Client>{
+public class Client implements Comparable<Client>, Identifiable{
 
     private static int counter = 0;
 
@@ -13,10 +13,6 @@ public class Client implements Comparable<Client>{
         this.id = counter;
         this.age = age;
         this.name = name;
-    }
-
-    public int getId() {
-        return id;
     }
 
     public void setId(int id) {
@@ -40,16 +36,22 @@ public class Client implements Comparable<Client>{
     }
 
     @Override
+    public int getId() {
+        return id;
+    }
+
+    @Override
     public int compareTo(Client o) {
-        return Integer.compare(this.getAge(), o.getAge());
+        int comparable = Integer.compare(this.getAge(), o.getAge());
+        if(comparable == 0){
+            comparable = Integer.compare(this.getId(), o.getId());
+        }
+        return comparable;
     }
 
     @Override
     public String toString() {
-        return "Cliente{" +
-                "name='" + name + '\'' +
-                ", age=" + age +
-                ", id=" + id +
-                '}';
+        return name +
+                ", " + id;
     }
 }

@@ -1,6 +1,8 @@
 package tree;
 
-public class Node<T extends Comparable<T>> {
+import entities.Identifiable;
+
+public class Node<T extends Comparable<T> & Identifiable> {
     private T value;
     private Node<T> right;
     private Node<T> left;

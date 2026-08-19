@@ -7,9 +7,9 @@ public class Main {
         Client client1 = new Client("João Batista", 18);
         Client client2 = new Client("Miguel Francisco", 20);
         Client client3 = new Client("Antonio Franco", 16);
-        Client client4 = new Client("Francisco", 22);
+        Client client4 = new Client("Francisco Conceição", 22);
         Client client5 = new Client("Gilberto Silva", 14);
-        Client client6 = new Client("João", 17);
+        Client client6 = new Client("João Nascimento", 17);
 
         Node<Client> node1 = new Node<>(client1);
         Node<Client> node2 = new Node<>(client2);
@@ -26,5 +26,11 @@ public class Main {
         tree.addNode(node6);
 
         tree.printTree();
+
+        System.out.println();
+        System.out.println("Node 5: " + tree.search(node5).getValue());
+
+        System.out.println();
+        System.out.println("ID 6: " + tree.searchById(6).getValue());
     }
 }
